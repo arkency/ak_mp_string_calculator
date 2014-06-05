@@ -23,3 +23,8 @@ class StringCalculatorTest < Test::Unit::TestCase
 
 end
 
+class Calculator
+  def add(expression)
+    expression.split(",").map(&:to_i).inject(0, :+)
+  end
+end

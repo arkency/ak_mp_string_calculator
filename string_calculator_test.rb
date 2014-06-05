@@ -21,6 +21,11 @@ class StringCalculatorTest < Test::Unit::TestCase
     assert_equal(calc.add("1,2"), 3)
   end
 
+  def test_newlines_are_good_delimiters_too
+    calc = Calculator.new
+    assert_equal(calc.add("1\n2,3"), 6)
+  end
+
 end
 
 class Calculator

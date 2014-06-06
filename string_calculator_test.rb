@@ -35,7 +35,16 @@ class StringCalculatorTest < Test::Unit::TestCase
 end
 
 class Calculator
+  def parse(expression)
+    if (expression.start_with?("//"))
+      lines = expression.split("\n")
+      return Regexp.new("[%s]" % lines[0][2]), lines[1]
+    end
+    return /[\n,;]/, expression
+  end
+
   def add(expression)
-    expression.split(/[\n,;]/).map(&:to_i).inject(0, :+)
+    delimiters, values = parse(expression)
+    values.split(delimiters).map(&:to_i).inject(0, :+)
   end
 end

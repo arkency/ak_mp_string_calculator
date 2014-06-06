@@ -35,6 +35,6 @@ end
 
 class Calculator
   def add(expression)
-    expression.split(/[\n,]/).map(&:to_i).inject(0, :+)
+    expression.split(/[\n,;]/).map(&:to_i).inject(0, :+)
   end
 end

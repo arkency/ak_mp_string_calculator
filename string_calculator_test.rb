@@ -32,6 +32,11 @@ class StringCalculatorTest < Test::Unit::TestCase
     assert_equal(3, calc.add("//*\n1*2"))
   end
 
+  def test_slash_as_delimiter_with_2_delimiters_on_the_beggining_should_not_be_treated_as_optional_format
+    calc = Calculator.new
+    assert_equal(3, calc.add("//1/2"))
+  end
+
 end
 
 class Calculator

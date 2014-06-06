@@ -29,7 +29,9 @@ class StringCalculatorTest < Test::Unit::TestCase
 end
 
 class Calculator
+  delimiters = ["\n",","]
+
   def add(expression)
-    expression.split(",").map(&:to_i).inject(0, :+)
+    expression.split(/[\n,]/).map(&:to_i).inject(0, :+)
   end
 end

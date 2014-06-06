@@ -29,6 +29,7 @@ class StringCalculatorTest < Test::Unit::TestCase
   def test_delimiters_given_in_first_line_of_args_should_be_used
     calc = Calculator.new
     assert_equal(3, calc.add("//;\n1;2"))
+    assert_equal(3, calc.add("//*\n1*2"))
   end
 
 end

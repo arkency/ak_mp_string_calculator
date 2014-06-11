@@ -34,9 +34,14 @@ class StringCalculatorTest < Test::Unit::TestCase
 
   def test_slash_as_delimiter_with_2_delimiters_on_the_beggining_should_not_be_treated_as_optional_format
     calc = Calculator.new
-    assert_equal(3, calc.add("//1/2"))
+    assert_raise(InputError) do
+      calc.add("//1/2")
+    end
   end
 
+end
+
+class InputError < StandardError
 end
 
 class Calculator

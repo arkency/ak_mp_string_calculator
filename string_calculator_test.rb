@@ -54,6 +54,7 @@ class Calculator
   private
 
   def parse(expression)
+    raise InputError.new if expression.start_with?("//") && ! expression.include?("\n")
     if (expression.start_with?("//"))
       lines = expression.split("\n")
       return Regexp.new("[%s]" % lines[0][2]), lines[1]

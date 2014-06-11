@@ -54,11 +54,15 @@ class Calculator
   private
 
   def parse(expression)
-    raise InputError.new if expression.start_with?("//") && ! expression.include?("\n")
-    if (expression.start_with?("//"))
+    raise InputError.new if with_optional_delimiter?(expression) && ! expression.include?("\n")
+    if with_optional_delimiter?(expression)
       lines = expression.split("\n")
       return Regexp.new("[%s]" % lines[0][2]), lines[1]
     end
     return /[\n,;]/, expression
+  end
+
+  def with_optional_delimiter?(expression)
+    expression.start_with?("//")
   end
 end

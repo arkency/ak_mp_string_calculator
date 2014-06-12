@@ -63,10 +63,15 @@ class Calculator
   def parse(expression)
     raise InputError.new if input_incorrect?(expression)
     if with_optional_delimiter?(expression)
-      lines = expression.split("\n")
-      return Regexp.new("[%s]" % lines[0][2]), lines[1]
+      delimiter, values = parseFormatString(expression)
+      return Regexp.new("[%s]" % delimiter), values
     end
     return /[\n,;]/, expression
+  end
+
+  def parseFormatString(expression)
+    lines = expression.split("\n")
+    return lines[0][2], lines[1]
   end
 
   def input_incorrect?(expression)

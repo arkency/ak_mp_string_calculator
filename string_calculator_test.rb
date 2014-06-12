@@ -46,6 +46,13 @@ class StringCalculatorTest < Test::Unit::TestCase
     end
   end
 
+  def test_not_allowed_negatives_should_be_in_error_message
+    calc = Calculator.new
+    assert_raise_with_message(NegativesNotAllowed, "-1, -3") do
+      calc.add("-1,2,-3")
+    end
+  end
+
 end
 
 class InputError < StandardError

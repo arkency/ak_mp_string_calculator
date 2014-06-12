@@ -50,6 +50,8 @@ end
 
 class InputError < StandardError
 end
+class NegativesNotAllowed < StandardError
+end
 
 class Calculator
 
@@ -62,6 +64,7 @@ class Calculator
 
   def parse(expression)
     raise InputError.new if input_incorrect?(expression)
+    raise NegativesNotAllowed.new if expression.include?("-")
     if with_optional_delimiter?(expression)
       delimiter, values = parseFormatString(expression)
       return Regexp.new("[%s]" % delimiter), values
